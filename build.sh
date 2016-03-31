@@ -13,3 +13,5 @@ go build -o micro-app main.go
 
 # Package in Docker container
 docker build -t registry.service.consul:5000/iverberk/micro-app .
+
+docker push registry.service.consul:5000/iverberk/micro-app
