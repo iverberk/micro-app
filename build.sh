@@ -9,7 +9,7 @@ go get -d -v
 go test -v
 
 # Build binaries
-CGO_ENABLED=0 go build -a -installsuffix -o micro-app main.go
+CGO_ENABLED=0 go build -a --installsuffix cgo --ldflags="-s" -o micro-app main.go
 
 # Package in Docker container
 docker build -t registry.service.consul:5000/iverberk/micro-app .
