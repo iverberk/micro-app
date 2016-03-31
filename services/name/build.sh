@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd ${0%/*}
 
 go get
