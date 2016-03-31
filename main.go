@@ -102,8 +102,9 @@ func setupRedis() (redis.Conn, error) {
 
 	maxAttempts := 20
 	var err error
+	var c redis.Conn
 	for attempts := 1; attempts <= maxAttempts; attempts++ {
-		c, err := redis.Dial("tcp", redisUrl, dialOptions)
+		c, err = redis.Dial("tcp", redisUrl, dialOptions)
 		if err == nil {
 			// Double-check communication
 			_, err = c.Do("PING")
