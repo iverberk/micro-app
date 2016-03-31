@@ -4,7 +4,7 @@ set -e
 
 cd ${0%/*}
 
-go get
+go get -d -v
 go test
 go build -o age-service main.go
 
