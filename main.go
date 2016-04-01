@@ -91,6 +91,10 @@ func setupConfig() {
 	if os.Getenv("AGE_SERVICE_URL") != "" {
 		config.AgeService = os.Getenv("AGE_SERVICE_URL")
 	}
+
+	if config.RedisHost == "" || config.RedisHost == 0 || config.AgeService == "" || config.NameService == "" {
+		log.Fatal("Invalid or missing configuration")
+	}
 }
 
 func setupRedis() (redis.Conn, error) {
