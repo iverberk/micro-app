@@ -18,7 +18,7 @@
                     {{ end }}
                 {{ end }}
 
-                {{ range  $i, $s := service $age) }}
+                {{ range  $i, $s := service $age }}
                     {{ if eq $i 0 }}
                         "age_service_url": "{{.Address}}:{{.Port}}"
                     {{ end }}
