@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t iverberk/jenkins-slave-golang-1.6 .
+docker build -t iverberk/jenkins-slave-micro-app .

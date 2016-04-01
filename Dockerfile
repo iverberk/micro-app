@@ -11,6 +11,6 @@ RUN apk add --no-cache unzip && \
 # Application files
 ADD micro-app micro-app
 ADD config.json.ctmpl config.json.ctmpl
-COPY run.sh run.sh
+COPY ./support/run.sh run.sh
 
 CMD ["/run.sh"]
