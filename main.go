@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 	"time"
 
 	"github.com/garyburd/redigo/redis"
@@ -72,26 +71,7 @@ func setupConfig() {
 		log.Println(err)
 	}
 
-	// Read config from environment
-	log.Println("Overriding configuration from env vars.")
-	if os.Getenv("REDIS_SERVICE") != "" {
-		config.RedisHost = os.Getenv("REDIS_HOST")
-	}
-	if os.Getenv("REDIS_SERVICE") != "" {
-		port, err := strconv.ParseInt(os.Getenv("REDIS_PORT"), 10, 64)
-		if err != nil {
-			log.Println("Could not parse port to integer, keeping default.")
-		} else {
-			config.RedisPort = port
-		}
-	}
-	if os.Getenv("NAME_SERVICE_URL") != "" {
-		config.NameService = os.Getenv("NAME_SERVICE_URL")
-	}
-	if os.Getenv("AGE_SERVICE_URL") != "" {
-		config.AgeService = os.Getenv("AGE_SERVICE_URL")
-	}
-
+	// Validate config
 	if config.RedisHost == "" || config.RedisPort == 0 || config.AgeService == "" || config.NameService == "" {
 		log.Fatal("Invalid or missing configuration")
 	}
