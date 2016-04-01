@@ -21,8 +21,8 @@ var (
 
 type Config struct {
 	// Database settings.
-	Host        string `json:"host"`
-	Port        int64  `json:"port"`
+	RedisHost   string `json:"redis_host"`
+	RedisPort   int64  `json:"redis_port"`
 	NameService string `json:"name_service_url"`
 	AgeService  string `json:"age_service_url"`
 }
@@ -59,8 +59,8 @@ func setupConfig() {
 	case os.IsNotExist(err):
 		log.Println("Config file missing using defaults")
 		config = Config{
-			Host:        "127.0.0.1",
-			Port:        6379,
+			RedisHost:   "172.16.250.130",
+			RedisPort:   6379,
 			NameService: "127.0.0.1:8081",
 			AgeService:  "127.0.0.1:8082",
 		}
@@ -74,15 +74,15 @@ func setupConfig() {
 
 	// Read config from environment
 	log.Println("Overriding configuration from env vars.")
-	if os.Getenv("REDIS_HOST") != "" {
-		config.Host = os.Getenv("REDIS_HOST")
+	if os.Getenv("REDIS_SERVICE") != "" {
+		config.RedisHost = os.Getenv("REDIS_HOST")
 	}
-	if os.Getenv("REDIS_PORT") != "" {
+	if os.Getenv("REDIS_SERVICE") != "" {
 		port, err := strconv.ParseInt(os.Getenv("REDIS_PORT"), 10, 64)
 		if err != nil {
 			log.Println("Could not parse port to integer, keeping default.")
 		} else {
-			config.Port = port
+			config.RedisPort = port
 		}
 	}
 	if os.Getenv("NAME_SERVICE_URL") != "" {
@@ -94,7 +94,7 @@ func setupConfig() {
 }
 
 func setupRedis() (redis.Conn, error) {
-	redisUrl := fmt.Sprintf("%s:%d", config.Host, config.Port)
+	redisUrl := fmt.Sprintf("%s:%d", config.RedisHost, config.RedisPort)
 	log.Println("Connecting to redis at", redisUrl)
 
 	// Establish redis connection
