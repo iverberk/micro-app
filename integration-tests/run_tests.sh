@@ -5,7 +5,7 @@ curl -XPUT -d @jobs/selenium-firefox.json --header "Content-Type: application/js
 curl -XPUT -d @jobs/selenium-chrome.json --header "Content-Type: application/json" 192.168.10.10:4646/v1/job/selenium-chrome
 
 # Wait for nodes to come online (should be improved)
-sleep 10
+sleep 5
 
 # Spin up environment
 #
