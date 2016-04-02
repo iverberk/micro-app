@@ -10,6 +10,8 @@ sleep 10
 # Spin up environment
 #
 
+npm install chai
+
 # Run tests
 wdio wdio.conf.js
 
