@@ -10,7 +10,7 @@ exports.config = {
     // according to your user and key information. However, if you are using a private Selenium
     // backend you should define the host address, port, and path here.
     //
-    host: 'selenium-hub.service.consul',
+    host: '0.0.0.0',
     port: 4444,
     path: '/wd/hub',
     
@@ -24,7 +24,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './specs/**/*.js'
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -48,9 +48,6 @@ exports.config = {
     //
     capabilities: [{
         browserName: 'firefox'
-    },
-    {
-        browserName: 'chrome'
     }],
     //
     // ===================
@@ -70,11 +67,11 @@ exports.config = {
     coloredLogs: true,
     //
     // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './errorShots/',
+    screenshotPath: './',
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://micro-app-integration.service.consul',
+    baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -115,23 +112,28 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'mocha',
+    framework: 'jasmine',
     //
     // Test reporter for stdout.
     // The following are supported: dot (default), spec, and xunit
     // see also: http://webdriver.io/guide/testrunner/reporters.html
     reporters: ['junit'],
     
-    reporterOptions: {
-        outputDir: './'
-    },
-
     //
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        ui: 'bdd'
+    // Options to be passed to Jasmine.
+    jasmineNodeOpts: {
+        //
+        // Jasmine default timeout
+        defaultTimeoutInterval: 10000,
+        //
+        // The Jasmine framework allows interception of each assertion in order to log the state of the application
+        // or website depending on the result. For example, it is pretty handy to take a screenshot every time
+        // an assertion fails.
+        expectationResultHandler: function(passed, assertion) {
+            // do something
+        }
     },
+    
     //
     // =====
     // Hooks
