@@ -10,6 +10,7 @@ sleep 5
 # Spin up environment
 #
 
+# Install some additional npm libraries
 npm install chai
 
 # Run tests
