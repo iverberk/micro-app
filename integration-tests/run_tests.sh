@@ -17,5 +17,5 @@ npm install chai
 wdio wdio.conf.js
 
 # Tear down nodes
-# curl -XDELETE --header "Content-Type: application/json" 192.168.10.10:4646/v1/job/selenium-firefox
-# curl -XDELETE --header "Content-Type: application/json" 192.168.10.10:4646/v1/job/selenium-chrome
+curl -XDELETE --header "Content-Type: application/json" 192.168.10.10:4646/v1/job/selenium-firefox
+curl -XDELETE --header "Content-Type: application/json" 192.168.10.10:4646/v1/job/selenium-chrome
