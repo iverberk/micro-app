@@ -16,6 +16,10 @@ npm install chai
 echo "Waiting for platform to come online"
 sleep 20
 
+# Set the base url for our micro-app from Consul
+BASE_URL=$(curl -XGET 192.168.10.10:8500/v1/catalog/service/micro-app-integration | jq '.[0] | .Address + ":" + (.ServicePort | tostring) ')
+sed -i "s/###BASE_URL###/$BASE_URL/g" wdio.conf.js
+
 # Run tests
 echo "Running integration tests"
 wdio wdio.conf.js
