@@ -2,6 +2,8 @@
 
 set -e
 
+cd "${0%/*}"
+
 if [ -z ${ENV+x} ]; then 
     echo "Please specify the ENV environment identifier"
     exit 1
