@@ -15,3 +15,9 @@ do
     sed "s/###ENV###/$ENV/g" jobs/$job.json.tmpl > jobs/$job.json
     curl -XPUT -d @jobs/$job.json --header "Content-Type: application/json" 192.168.10.10:4646/v1/job/$job-$ENV
 done
+
+sleep 20
+
+echo -e "Environment url: " 
+
+curl -XGET 192.168.10.10:8500/v1/catalog/service/micro-app-$ENV | jq -r '.[0] | .Address + ":" + (.ServicePort | tostring) ')
