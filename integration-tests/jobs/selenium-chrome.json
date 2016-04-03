@@ -24,7 +24,7 @@
                 "image": "selenium/node-chrome",
                 "port_map": [
                   {
-                    "chrome": 5556
+                    "chrome": 5555
                   }
                 ]
               },
