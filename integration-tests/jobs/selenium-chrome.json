@@ -24,7 +24,7 @@
                 "image": "selenium/node-chrome",
                 "port_map": [
                   {
-                    "chrome": 5555
+                    "chrome": 5556
                   }
                 ]
               },
@@ -60,7 +60,7 @@
                 ],
                 "IOPS": 0,
                 "DiskMB": 300,
-                "MemoryMB": 512,
+                "MemoryMB": 384,
                 "CPU": 384
               }
             }
