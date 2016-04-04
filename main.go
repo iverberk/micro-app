@@ -157,7 +157,7 @@ func Introduce(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	introduction = fmt.Sprintf("<h2>Hello, my name is %s and I'm %s years old and I live in the %s environment!</h2>", string(name), string(age), os.Getenv("ENV"))
+	introduction = fmt.Sprintf("<div id=\"intro\">Hello, my name is %s and I'm %s years old and I live in the %s environment!</div>", string(name), string(age), os.Getenv("ENV"))
 
 	store := r.URL.Query().Get("store")
 	if len(store) != 0 {
